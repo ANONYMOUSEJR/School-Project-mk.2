@@ -11,6 +11,7 @@ using namespace std;
 using namespace chrono;
 using namespace this_thread;
 
+// Im thyping this from my ipad lol...
 
 class math {
 private:
