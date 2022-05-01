@@ -141,9 +141,16 @@
   <ItemGroup>
     <ClCompile Include="math.cpp" />
     <ClCompile Include="School Project mk.2.cpp" />
+    <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="School Project mk.2.h" />
+    <ClInclude Include="user.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="School Project mk.2.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
