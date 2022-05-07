@@ -17,27 +17,27 @@ using namespace this_thread;
 
 class math{
 public:
-	unsigned short questAmount, pts = 0;
+	unsigned short questAmount;
 	int diff;
 	string diffStr;
-	short secondVar, ans, studAns;
+	short secondVar, bet, pts = 0, ans, studAns;
 	short arrEasy[5] = {0, 1, 2, 5, 10 }; // For Easy.
 	short arrMed[11] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // For Medium.
 	short arrHard[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}; // For Hard.
 	short arrCalc[12] = {13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24}; // For Calculator.
 
-	bool bDiff = false, studInput = false;
+	bool bDiff = false;
 
 	void questProc() {
-		// start:
 		system("cls");
 
-		cout << "How hard do you want the questions to be?" << endl;
+		cout << "How hard do you want the question(s) to be?" << endl;
 		cout << "(The harder you choose, the larger the numbers you'll have to calculate)" << endl;
-		cout << "1) EASY" << endl;
-		cout << "2) MEDIUM" << endl;
-		cout << "3) HARD" << endl;
-		cout << "4) CALCULATOR MODE LOL" << endl << "~> ";
+		cout << "(Also choosing a harder difficulty will give you more points with the caviat of having more points taken from you in case you make a mistake)" << endl;
+		cout << "1) EASY [Gain/Loss 1 Point]" << endl;
+		cout << "2) MEDIUM [Gain/Loss 5 Points]" << endl;
+		cout << "3) HARD [Gain/Loss 10 Points]" << endl;
+		cout << "4) CALCULATOR MODE LOL [Gain/Loss 15 Points]" << endl << "~> ";
 		cin >> diff;
 
 		// Func to convert the input into a string.
@@ -87,10 +87,11 @@ public:
 			system("cls");
 			cout << "INPUTED VAL IS EITHER NOT AN INT OR ISN'T IN THE LIST, TRY AGAIN";
 			sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s);
-			goto end;
 
 		}
+	}
 
+	void questAsk() {
 		// The following creates the question according to the set difficulty.
 		switch (diff) {
 		case 1: // Easy Mode:
@@ -101,7 +102,6 @@ public:
 			ans = arrEasy[0] * secondVar;
 			cout << arrEasy[0] << " * " << secondVar << " = ?" << endl << "~> ";
 			cin >> studAns;
-			studInput = true;
 			break;
 
 		case 2: // Medium Mode:
@@ -112,7 +112,6 @@ public:
 			ans = arrEasy[0] * secondVar;
 			cout << arrEasy[0] << " * " << secondVar << " = ?" << endl << "~> ";
 			cin >> studAns;
-			studInput = true;
 			break;
 
 		case 3: // Hard Mode:
@@ -123,7 +122,6 @@ public:
 			ans = arrHard[0] * secondVar;
 			cout << arrHard[0] << " * " << secondVar << " = ?" << endl << "~> ";
 			cin >> studAns;
-			studInput = true;
 			break;
 
 		case 4: // Calculator mode:
@@ -134,39 +132,83 @@ public:
 			ans = arrHard[0] * secondVar;
 			cout << arrHard[0] << " * " << secondVar << " = ?" << endl << "~> ";
 			cin >> studAns;
-			studInput = true;
 			break;
 
 		default:
 			break;
 		}
+		
+		// The following checks if ans is correct and rewards or punishes accordingly.
+		if (studAns == ans) {
+			switch (diff) {
+			case 1:
+				cout << "WELL DONE!" << endl; pts++; cout << "You have GAINED a point!";
+				break;
 
-	end:
+			case 2:
+				cout << "WELL DONE!" << endl; pts + 5; cout << "You have GAINED Five points!";
+				break;
 
-		// The following checks if ans is correct.
+			case 3:
+				cout << "WELL DONE!" << endl; pts + 10; cout << "You have GAINED Ten points!";
+				break;
 
-		if (studAns == ans && studInput == true) {
-			cout << "WELL DONE!" << endl;
-			pts++;
-			cout << "You have gained a point." << endl << "You now have : " << pts;
-			if (pts == 1) {
-				cout << " Point in total." << endl;
+			case 4:
+				cout << "WELL DONE!" << endl; pts + 15; cout << "You have GAINED Fifteen points!";
+				break;
+
 			}
-			else {
-				cout << " Points in total." << endl;
-			}
-			studInput = false;
-		}
-		else if (studAns != ans && studInput == true) {
-			cout << "WRONG, CORRECT ANSWER WAS: " << ans << endl;
-			cout << "You have gained no points" << endl;
-			studInput = false;
+			
 		}
 
+		else if (studAns != ans) {
+			switch (diff) {
+			case 1:
+				cout << "WRONG, the correct answer was: " << ans << endl; pts--; cout << "You have LOST a point!" << endl;
+				break;
+
+			case 2:
+				cout << "WRONG, the correct answer was: " << ans << endl; pts - 5; cout << "You have LOST Five points!" << endl;
+				break;
+
+			case 3:
+				cout << "WRONG, the correct answer was: " << ans << endl; pts - 10; cout << "You have LOST Ten points!" << endl;
+				break;
+
+			case 4:
+				cout << "WRONG, the correct answer was: " << ans << endl; pts - 15; cout << "You have LOST Fifteen points!" << endl;
+				break;
+			}
+		}
+		sleep_for(0.5s); cout << "."; sleep_for(0.5s); cout << "."; sleep_for(0.5s); cout << "."; sleep_for(0.5s);
 	}
+
+	void getBet() {
+		system("cls");
+		cout << "What do you think your score will be by the end of this game? (Be mindful of what difficulty you chose, as well as how many questions you'll answer.)" << endl << "~> ";
+		cin >> bet;
+	}
+
+	void betProc() {
+		system("cls");
+		if (bet < pts) {
+			cout << "Congrats, you've outdone yourself by " << pts - bet << " Points!" << endl << "Have a cookie :3";
+			cout << endl << endl << "BTW your score was: " << pts << " points.";
+		}
+		else if (bet > pts) {
+			cout << "Pity, you missed your mark by just " << bet - pts << " Points!" << endl << "Better luck next time <3";
+			cout << endl << endl << "BTW your score was: " << pts << " points.";
+		}
+		else if (bet == pts) {
+			cout << "Bravo, you where spot on!";
+			cout << endl << endl << "BTW your score was: " << pts << " points.";
+		}
+	}
+
 	/*friend void operator << (ostream& out, math& m) {
 		out << m.pts;
 	}*/ // My attempt at overloading the operator. (link: https://www.youtube.com/watch?v=wElBXMmgWzM)
 };
+
 
 #pragma warning ( pop )
