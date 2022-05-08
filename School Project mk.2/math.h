@@ -6,6 +6,7 @@
 #include <thread>
 #include <algorithm>
 #include <string>
+#include <stdlib.h>
 
 using namespace std;
 using namespace chrono;
@@ -14,10 +15,10 @@ using namespace this_thread;
 
 class math{
 public:
-	unsigned short questAmount;
+	bool terminate = false;
 	int diff;
 	string diffStr;
-	short secondVar, bet, pts = 0, ans, studAns;
+	short secondVar, bet, pts, ans, studAns;
 	short arrEasy[5] = {0, 1, 2, 5, 10 }; // For Easy.
 	short arrMed[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // For Medium.
 	short arrHard[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}; // For Hard.
@@ -25,11 +26,13 @@ public:
 
 
 	void questProc() {
+
 		system("cls");
 
+		diff = 0;
 		cout << "How hard do you want the question(s) to be?" << endl;
 		cout << "(The harder you choose, the larger the numbers you'll have to calculate)" << endl;
-		cout << "(Also choosing a harder difficulty will give you more points with the caviat of having more points taken from you in case you make a mistake)" << endl;
+		cout << "(Also choosing a harder difficulty will have a higher risk/reward)" << endl;
 		cout << "1) EASY [Gain/Loss 1 Point]" << endl;
 		cout << "2) MEDIUM [Gain/Loss 5 Points]" << endl;
 		cout << "3) HARD [Gain/Loss 10 Points]" << endl;
@@ -37,11 +40,9 @@ public:
 		cin >> diff;
 
 		// Func to convert the input into a string.
-
 		diffStr = to_string(diff);
 
 		// Func to test if the input was an int.
-
 		for (unsigned int i = 0; i < diffStr.length(); i++) {
 			if (isdigit(diffStr[i]) == false) {
 				// Not int.
@@ -56,34 +57,34 @@ public:
 		switch (diff) {
 		case 1:
 			system("cls");
-			cout << "EASY MODE ACTIVATED" << endl;
+			cout << "EASY MODE ACTIVATED";
 			sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s);
 			break;
 
 		case 2:
 			system("cls");
-			cout << "MEDIUM MODE ACTIVATED" << endl;
+			cout << "MEDIUM MODE ACTIVATED";
 			sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s);
 			break;
 
 		case 3:
 			system("cls");
-			cout << "HARD MODE ACTIVATED" << endl;
+			cout << "HARD MODE ACTIVATED";
 			sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s);
 			break;
 
 		case 4:
 			system("cls");
-			cout << "CALCULATOR MODE ACTIVATED" << endl;
+			cout << "CALCULATOR MODE ACTIVATED";
 			sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s);
 			break;
 
 		default:
 		def:
 			system("cls");
-			cout << "INPUTED VAL IS EITHER NOT AN INT OR ISN'T IN THE LIST, TRY AGAIN";
+			cout << "GIVEN VALUE IS EITHER NOT AN INTEGER OR ISN'T IN THE LIST, TRY AGAIN";
 			sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s); cout << "."; sleep_for(0.25s);
-
+			terminate = true;
 		}
 	}
 
@@ -218,6 +219,3 @@ public:
 		out << m.pts;
 	}*/ // My attempt at overloading the operator. (link: https://www.youtube.com/watch?v=wElBXMmgWzM)
 };
-
-
-//#pragma warning ( pop )

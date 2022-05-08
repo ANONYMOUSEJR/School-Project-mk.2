@@ -9,10 +9,10 @@ using namespace std;
 using namespace this_thread;
 
 int main(){
-    unsigned short usr = 0, amnt = 0;
+    unsigned short amnt;
 
     cout << "For the best experience (Full screen) please press [alt key] + [enter key]";
-    sleep_for(1s); cout << "."; sleep_for(1.5s); cout << "."; sleep_for(1.5s); cout << "."; sleep_for(1.5s); // Optimize.
+    sleep_for(1.25s); cout << "."; sleep_for(1.25s); cout << "."; sleep_for(1.25s); cout << "."; sleep_for(1.25s); // Optimize.
     system("cls");
 
 
@@ -26,25 +26,24 @@ int main(){
         goto amount;
     }
     */
+    
     cout << "How many questions do you wish to answer?" << endl << "~> ";
     cin >> amnt;
 
-    //vector<user> st(usr);
-
     math st;
     st.questProc();
+
+    if (terminate) { return 1; }
+
     st.getBet();
+
     for (unsigned short i = 0; i < amnt; i++) {
-        //cout << "User number " << i++ << "What is your name?" << endl << "~> ";
-        // st[i].getName(); Outputs a fatal error, no time to trouble shoot.
-
         st.questAsk();
-
     }
+
     st.betProc();
 
     cout << endl << "You've done a total of " << amnt << " questions!";
-    // Fix So that it displays only one user... no time to have multiple...
 
     /*
     // Populating the temporary array (called "arr"):
