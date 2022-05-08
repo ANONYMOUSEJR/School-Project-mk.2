@@ -12,7 +12,7 @@ int main(){
     unsigned short usr = 0, amnt = 0;
 
     cout << "For the best experience (Full screen) please press [alt key] + [enter key]";
-    sleep_for(1s); cout << "."; sleep_for(1.5s); cout << "."; sleep_for(2s); cout << "."; sleep_for(2s);
+    sleep_for(1s); cout << "."; sleep_for(1.5s); cout << "."; sleep_for(1.5s); cout << "."; sleep_for(1.5s); // Optimize.
     system("cls");
 
 

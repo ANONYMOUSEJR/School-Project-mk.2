@@ -1,6 +1,4 @@
 #pragma once
-#pragma warning( push ) // Disabling warnings Link: https://www.fluentcpp.com/2019/08/30/how-to-disable-a-warning-in-cpp/.
-#pragma warning( disable : 26495 ) // 4244
 
 #include <iostream>
 #include <iostream>
@@ -222,4 +220,4 @@ public:
 };
 
 
-#pragma warning ( pop )
+//#pragma warning ( pop )
