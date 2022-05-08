@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <iostream>
-#include <conio.h> //overloading operator.
 #include <chrono>
 #include <thread>
 #include <algorithm>
@@ -22,11 +21,10 @@ public:
 	string diffStr;
 	short secondVar, bet, pts = 0, ans, studAns;
 	short arrEasy[5] = {0, 1, 2, 5, 10 }; // For Easy.
-	short arrMed[11] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // For Medium.
+	short arrMed[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // For Medium.
 	short arrHard[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}; // For Hard.
 	short arrCalc[12] = {13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24}; // For Calculator.
 
-	bool bDiff = false;
 
 	void questProc() {
 		system("cls");
@@ -46,7 +44,7 @@ public:
 
 		// Func to test if the input was an int.
 
-		for (int i = 0; i < diffStr.length(); i++) {
+		for (unsigned int i = 0; i < diffStr.length(); i++) {
 			if (isdigit(diffStr[i]) == false) {
 				// Not int.
 				goto def;
@@ -93,10 +91,10 @@ public:
 
 	void questAsk() {
 		// The following creates the question according to the set difficulty.
+		srand(static_cast<unsigned int>(time(NULL))); // Initializing random seed.
 		switch (diff) {
 		case 1: // Easy Mode:
 			system("cls");
-			srand(time(NULL)); // Initializing random seed.
 			random_shuffle(&arrEasy[0], &arrEasy[4]); // For first var.
 			secondVar = rand() % 10 + 1; // Rand number from 1 to 10 (for second var).
 			ans = arrEasy[0] * secondVar;
@@ -106,17 +104,15 @@ public:
 
 		case 2: // Medium Mode:
 			system("cls");
-			srand(time(NULL)); // Initializing random seed.
-			random_shuffle(&arrMed[0], &arrMed[11]); // For first var.
+			random_shuffle(&arrMed[0], &arrMed[10]); // For first var.
 			secondVar = rand() % 10 + 1; // Rand number from 1 to 10 (for second var).
-			ans = arrEasy[0] * secondVar;
-			cout << arrEasy[0] << " * " << secondVar << " = ?" << endl << "~> ";
+			ans = arrMed[0] * secondVar;
+			cout << arrMed[0] << " * " << secondVar << " = ?" << endl << "~> ";
 			cin >> studAns;
 			break;
 
 		case 3: // Hard Mode:
 			system("cls");
-			srand(time(NULL)); // Initializing random seed.
 			random_shuffle(&arrHard[0], &arrHard[12]); // For first var.
 			secondVar = rand() % 12 + 1; // Rand number from 1 to 10 (for second var).
 			ans = arrHard[0] * secondVar;
@@ -126,11 +122,10 @@ public:
 
 		case 4: // Calculator mode:
 			system("cls");
-			srand(time(NULL)); // Initializing random seed.
 			random_shuffle(&arrCalc[0], &arrCalc[12]); // For first var.
 			secondVar = rand() % 24 + 1; // Rand number from 1 to 10 (for second var).
-			ans = arrHard[0] * secondVar;
-			cout << arrHard[0] << " * " << secondVar << " = ?" << endl << "~> ";
+			ans = arrCalc[0] * secondVar;
+			cout << arrCalc[0] << " * " << secondVar << " = ?" << endl << "~> ";
 			cin >> studAns;
 			break;
 
@@ -142,19 +137,27 @@ public:
 		if (studAns == ans) {
 			switch (diff) {
 			case 1:
-				cout << "WELL DONE!" << endl; pts++; cout << "You have GAINED a point!";
+				cout << "WELL DONE!" << endl; 
+				pts++; 
+				cout << "You have GAINED a point!";
 				break;
 
 			case 2:
-				cout << "WELL DONE!" << endl; pts + 5; cout << "You have GAINED Five points!";
+				cout << "WELL DONE!" << endl; 
+				pts += 5; 
+				cout << "You have GAINED Five points!";
 				break;
 
 			case 3:
-				cout << "WELL DONE!" << endl; pts + 10; cout << "You have GAINED Ten points!";
+				cout << "WELL DONE!" << endl; 
+				pts += 10; 
+				cout << "You have GAINED Ten points!";
 				break;
 
 			case 4:
-				cout << "WELL DONE!" << endl; pts + 15; cout << "You have GAINED Fifteen points!";
+				cout << "WELL DONE!" << endl; 
+				pts += 15; 
+				cout << "You have GAINED Fifteen points!";
 				break;
 
 			}
@@ -164,19 +167,27 @@ public:
 		else if (studAns != ans) {
 			switch (diff) {
 			case 1:
-				cout << "WRONG, the correct answer was: " << ans << endl; pts--; cout << "You have LOST a point!" << endl;
+				cout << "WRONG, the correct answer was: " << ans << endl; 
+				pts--; 
+				cout << "You have LOST a point!" << endl;
 				break;
 
 			case 2:
-				cout << "WRONG, the correct answer was: " << ans << endl; pts - 5; cout << "You have LOST Five points!" << endl;
+				cout << "WRONG, the correct answer was: " << ans << endl; 
+				pts -= 5; 
+				cout << "You have LOST Five points!" << endl;
 				break;
 
 			case 3:
-				cout << "WRONG, the correct answer was: " << ans << endl; pts - 10; cout << "You have LOST Ten points!" << endl;
+				cout << "WRONG, the correct answer was: " << ans << endl; 
+				pts -= 10; 
+				cout << "You have LOST Ten points!" << endl;
 				break;
 
 			case 4:
-				cout << "WRONG, the correct answer was: " << ans << endl; pts - 15; cout << "You have LOST Fifteen points!" << endl;
+				cout << "WRONG, the correct answer was: " << ans << endl; 
+				pts -= 15; 
+				cout << "You have LOST Fifteen points!" << endl;
 				break;
 			}
 		}

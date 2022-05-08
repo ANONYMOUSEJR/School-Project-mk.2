@@ -12,7 +12,7 @@ int main(){
     unsigned short usr = 0, amnt = 0;
 
     cout << "For the best experience (Full screen) please press [alt key] + [enter key]";
-    sleep_for(1s); cout << "."; sleep_for(1.5s); cout << "."; sleep_for(2s); cout << "."; sleep_for(20s);
+    sleep_for(1s); cout << "."; sleep_for(1.5s); cout << "."; sleep_for(2s); cout << "."; sleep_for(2s);
     system("cls");
 
 
@@ -27,14 +27,14 @@ int main(){
     }
     */
     cout << "How many questions do you wish to answer?" << endl << "~> ";
-    cin >> amnt;// say how many quests were done..
+    cin >> amnt;
 
     //vector<user> st(usr);
 
     math st;
     st.questProc();
     st.getBet();
-    for (unsigned short i = 0; i <= amnt; i++) {
+    for (unsigned short i = 0; i < amnt; i++) {
         //cout << "User number " << i++ << "What is your name?" << endl << "~> ";
         // st[i].getName(); Outputs a fatal error, no time to trouble shoot.
 
@@ -42,6 +42,8 @@ int main(){
 
     }
     st.betProc();
+
+    cout << endl << "You've done a total of " << amnt << " questions!";
     // Fix So that it displays only one user... no time to have multiple...
 
     /*
