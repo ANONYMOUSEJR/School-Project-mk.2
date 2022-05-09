@@ -113,7 +113,7 @@ public:
 		case 3: // Hard Mode:
 			system("cls");
 			random_shuffle(&arrHard[0], &arrHard[12]); // For first var.
-			secondVar = rand() % 12 + 1; // Rand number from 1 to 10 (for second var).
+			secondVar = rand() % 12 + 1; // Rand number from 1 to 12 (for second var).
 			ans = arrHard[0] * secondVar;
 			cout << arrHard[0] << " * " << secondVar << " = ?" << endl << "~> ";
 			cin >> studAns;
@@ -122,7 +122,7 @@ public:
 		case 4: // Calculator mode:
 			system("cls");
 			random_shuffle(&arrCalc[0], &arrCalc[12]); // For first var.
-			secondVar = rand() % 24 + 1; // Rand number from 1 to 10 (for second var).
+			secondVar = rand() % 24 + 1; // Rand number from 1 to 24 (for second var).
 			ans = arrCalc[0] * secondVar;
 			cout << arrCalc[0] << " * " << secondVar << " = ?" << endl << "~> ";
 			cin >> studAns;
