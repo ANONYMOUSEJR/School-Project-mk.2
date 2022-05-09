@@ -127,9 +127,6 @@ public:
 			cout << arrCalc[0] << " * " << secondVar << " = ?" << endl << "~> ";
 			cin >> studAns;
 			break;
-
-		default:
-			break;
 		}
 		
 		// The following checks if ans is correct and rewards or punishes accordingly.
