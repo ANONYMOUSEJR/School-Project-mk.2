@@ -192,7 +192,9 @@ public:
 
 	void getBet() {
 		system("cls");
-		cout << "What do you think your score will be by the end of this game? (Be mindful of what difficulty you chose, as well as how many questions you'll answer.)" << endl << "~> ";
+		cout << "What do you think your score will be by the end of this game?" << endl;
+		cout << "(Be mindful of what difficulty you chose, as well as how many questions you'll answer.)";
+		cout << endl << "~> ";
 		cin >> bet;
 	}
 
